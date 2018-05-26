@@ -1,0 +1,12 @@
+
+N"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ºÖ
+Asquid:S1068"'Remove this unused "TAG" private field.(ÍâÏåıÿÿÿÿ
+Csquid:S1068".Remove this unused "mEmailView" private field.(ñ¢è¦
+Ksquid:S1068"1Remove this unused "mProgressView" private field.(µµ³Ãşÿÿÿÿ
+Gsquid:S1068"2Remove this unused "mLoginFormView" private field.(èÃÙú
+nsquid:S1450"YRemove the "mEmailView" field and declare it as a local variable in the relevant methods.(ñ¢è¦
+vsquid:S1450"\Remove the "mPasswordView" field and declare it as a local variable in the relevant methods.(ò²‡Ëøÿÿÿÿ
+vsquid:S1450"\Remove the "mProgressView" field and declare it as a local variable in the relevant methods.(µµ³Ãşÿÿÿÿ
+rsquid:S1450"]Remove the "mLoginFormView" field and declare it as a local variable in the relevant methods.(èÃÙú
+`squid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ
+hsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(¿Ğ’¼øÿÿÿÿ

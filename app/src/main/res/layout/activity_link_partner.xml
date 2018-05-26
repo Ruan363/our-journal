@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/default_16dp"
+    tools:context="com.razor.ourjournal.link_partner.view.LinkPartnerActivity">
+
+    <TextView
+        android:id="@+id/link_partner_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_4dp"
+        android:text="@string/link_partner_question_title"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_16dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edtEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_address_hint"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_8dp"
+        android:layout_marginEnd="@dimen/default_4dp"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="end"
+        android:textColor="@color/white"
+        android:text="@string/share_button_text"
+        android:visibility="invisible"/>
+
+</LinearLayout>
