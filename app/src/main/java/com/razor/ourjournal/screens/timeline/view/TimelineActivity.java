@@ -1,23 +1,22 @@
-package com.razor.ourjournal.timeline.view;
+package com.razor.ourjournal.screens.timeline.view;
 
-import android.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.timeline.viewmodel.TimelineActivityViewModel;
+import com.razor.ourjournal.screens.BaseDrawerActivity;
+import com.razor.ourjournal.screens.timeline.viewmodel.TimelineActivityViewModel;
 
-public class TimelineActivity extends AppCompatActivity implements TimelineActivityView {
+public class TimelineActivity extends BaseDrawerActivity implements TimelineActivityView {
 
     FrameLayout contentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        super.setContent(R.layout.activity_timeline);
 
-        contentContainer = (FrameLayout) findViewById(R.id.content_container);
+        contentContainer = findViewById(R.id.content_container);
 
         new TimelineActivityViewModel(this);
     }

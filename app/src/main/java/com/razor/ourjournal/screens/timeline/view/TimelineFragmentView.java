@@ -1,9 +1,8 @@
-package com.razor.ourjournal.timeline.view;
+package com.razor.ourjournal.screens.timeline.view;
 
 
-import com.razor.ourjournal.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.model.Post;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface TimelineFragmentView {

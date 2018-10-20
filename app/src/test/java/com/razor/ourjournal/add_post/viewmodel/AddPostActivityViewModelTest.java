@@ -2,11 +2,12 @@ package com.razor.ourjournal.add_post.viewmodel;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.razor.ourjournal.BuildConfig;
-import com.razor.ourjournal.add_post.view.AddPostActivityView;
+import com.razor.ourjournal.screens.add_post.view.AddPostActivityView;
 import com.razor.ourjournal.repository.IPostRepository;
 import com.razor.ourjournal.repository.ISharedPreferencesRepository;
 import com.razor.ourjournal.repository.IUserRepository;
-import com.razor.ourjournal.timeline.model.Post;
+import com.razor.ourjournal.screens.add_post.viewmodel.AddPostActivityViewModel;
+import com.razor.ourjournal.screens.timeline.model.Post;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.razor.ourjournal.timeline.view;
+package com.razor.ourjournal.screens.timeline.view;
 
 
 import android.content.Intent;
@@ -15,13 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.add_post.view.AddPostActivity;
+import com.razor.ourjournal.screens.add_post.view.AddPostActivity;
 import com.razor.ourjournal.error.view.ErrorFragment;
 import com.razor.ourjournal.repository.IRepositoryCallback;
 import com.razor.ourjournal.repository.PostRepository;
-import com.razor.ourjournal.timeline.adapter.TimelineAdapter;
-import com.razor.ourjournal.timeline.model.Post;
-import com.razor.ourjournal.timeline.viewmodel.TimelineFragmentViewModel;
+import com.razor.ourjournal.screens.timeline.adapter.TimelineAdapter;
+import com.razor.ourjournal.screens.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.viewmodel.TimelineFragmentViewModel;
 
 import java.util.List;
 

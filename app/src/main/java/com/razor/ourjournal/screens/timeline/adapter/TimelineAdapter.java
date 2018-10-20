@@ -1,4 +1,4 @@
-package com.razor.ourjournal.timeline.adapter;
+package com.razor.ourjournal.screens.timeline.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.model.Post;
 import com.razor.ourjournal.utils.DateUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.TimelineItemViewHolder> {
@@ -69,7 +70,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
             setRightContent(holder, post);
         }
 
-        holder.tvPostDate.setText(DateUtils.formatDate(DateUtils.DateFormat.DAY_MON, post.getDate()));
+        holder.tvPostDate.setText(DateUtils.formatDate(DateUtils.DateFormat.DAY_MON, new Date(post.getDate())));
     }
 
     private void setRightContent(TimelineItemViewHolder holder, Post post) {

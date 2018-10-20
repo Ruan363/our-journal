@@ -1,4 +1,4 @@
-package com.razor.ourjournal.timeline.model;
+package com.razor.ourjournal.screens.timeline.model;
 
 
 import android.os.Parcel;
@@ -15,7 +15,7 @@ public class Post implements Parcelable {
     private String description;
     private String userEmailPostedBy;
     private String userEmailPostedFor;
-    private Date date;
+    private Long date;
 
     public Post() {
     }
@@ -47,7 +47,7 @@ public class Post implements Parcelable {
         return description;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
@@ -64,7 +64,7 @@ public class Post implements Parcelable {
         this.description = description;
         this.userEmailPostedBy = userEmailPostedBy;
         this.userEmailPostedFor = userEmailPostedFor;
-        this.date = new Date();
+        this.date = new Date().getTime();
     }
 
     @Override

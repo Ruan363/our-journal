@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.os.Parcelable;
 
 import com.razor.ourjournal.repository.PostRepository;
-import com.razor.ourjournal.timeline.model.Post;
-import com.razor.ourjournal.timeline.view.TimelineFragmentView;
+import com.razor.ourjournal.screens.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.view.TimelineFragmentView;
+import com.razor.ourjournal.screens.timeline.viewmodel.TimelineFragmentViewModel;
 
 import org.junit.Before;
 import org.junit.Test;

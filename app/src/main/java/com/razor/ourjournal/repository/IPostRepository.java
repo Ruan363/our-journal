@@ -1,7 +1,7 @@
 package com.razor.ourjournal.repository;
 
 
-import com.razor.ourjournal.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.model.Post;
 
 public interface IPostRepository {
     void getPosts();

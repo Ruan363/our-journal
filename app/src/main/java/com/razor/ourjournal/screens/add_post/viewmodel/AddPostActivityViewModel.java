@@ -1,14 +1,14 @@
-package com.razor.ourjournal.add_post.viewmodel;
+package com.razor.ourjournal.screens.add_post.viewmodel;
 
 
 import android.text.TextUtils;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.razor.ourjournal.add_post.view.AddPostActivityView;
+import com.razor.ourjournal.screens.add_post.view.AddPostActivityView;
 import com.razor.ourjournal.repository.IPostRepository;
 import com.razor.ourjournal.repository.ISharedPreferencesRepository;
 import com.razor.ourjournal.repository.IUserRepository;
-import com.razor.ourjournal.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.model.Post;
 
 public class AddPostActivityViewModel {
     private AddPostActivityView view;
@@ -51,7 +51,7 @@ public class AddPostActivityViewModel {
 
         view.showProgressLoader();
 
-//        addPost();
+        addPost();
     }
 
     private void addPost() {
@@ -64,10 +64,5 @@ public class AddPostActivityViewModel {
 
     private String getPartnerEmail() {
         return sharedPreferencesRepository.getPartnerEmail();
-    }
-
-    public void postsUpdated() {
-        view.hideProgressLoader();
-//        view.closeScreen();
     }
 }

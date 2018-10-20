@@ -1,4 +1,4 @@
-package com.razor.ourjournal.add_post.view;
+package com.razor.ourjournal.screens.add_post.view;
 
 
 import android.os.Bundle;
@@ -11,19 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.add_post.viewmodel.AddPostActivityViewModel;
+import com.razor.ourjournal.screens.add_post.viewmodel.AddPostActivityViewModel;
 import com.razor.ourjournal.repository.IRepositoryCallback;
 import com.razor.ourjournal.repository.PostRepository;
 import com.razor.ourjournal.repository.SharedPreferencesRepository;
 import com.razor.ourjournal.repository.UserRepository;
-
-import static com.razor.ourjournal.constant.FirebaseConstant.PATHS.POSTS;
 
 public class AddPostActivity extends AppCompatActivity implements AddPostActivityView, View.OnClickListener, IRepositoryCallback {
 
@@ -41,9 +35,6 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
 
         initUiElements();
 
-        postDatabaseReference = FirebaseDatabase.getInstance().getReference().child(POSTS);
-        postDatabaseReference.addValueEventListener(getPostsListener);
-
         viewModel = new AddPostActivityViewModel(this, new PostRepository(this, getApplicationContext()), new SharedPreferencesRepository(this), new UserRepository());
     }
 
@@ -57,18 +48,6 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
         detailEditText.addTextChangedListener(detailTextWatcher);
         postButton.setOnClickListener(this);
     }
-
-    ValueEventListener getPostsListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            viewModel.postsUpdated();
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    };
 
     TextWatcher titleTextWatcher = new TextWatcher() {
         @Override
@@ -137,13 +116,24 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
     }
 
     @Override
+    public void enableUiElements() {
+        titleEditText.setEnabled(true);
+        detailEditText.setEnabled(true);
+        postButton.setEnabled(true);
+    }
+
+    @Override
     public void onClick(View view) {
         viewModel.postClicked();
     }
 
     @Override
     public void onSuccess(@NonNull Bundle bundle) {
+        hideProgressLoader();
 
+        enableUiElements();
+
+        closeScreen();
     }
 
     @Override

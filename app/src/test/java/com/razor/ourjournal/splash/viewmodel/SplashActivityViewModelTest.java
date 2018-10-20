@@ -1,13 +1,13 @@
 package com.razor.ourjournal.splash.viewmodel;
 
 import com.razor.ourjournal.BuildConfig;
-import com.razor.ourjournal.splash.view.SplashActivityView;
+import com.razor.ourjournal.screens.splash.view.SplashActivityView;
+import com.razor.ourjournal.screens.splash.viewmodel.SplashActivityViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLooper;

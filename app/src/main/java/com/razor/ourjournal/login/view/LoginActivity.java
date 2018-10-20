@@ -32,7 +32,7 @@ import com.razor.ourjournal.R;
 import com.razor.ourjournal.link_partner.view.LinkPartnerActivity;
 import com.razor.ourjournal.login.viewmodel.LoginActivityViewModel;
 import com.razor.ourjournal.repository.SharedPreferencesRepository;
-import com.razor.ourjournal.timeline.view.TimelineActivity;
+import com.razor.ourjournal.screens.timeline.view.TimelineActivity;
 
 /**
  * A signInViaGoogleApi screen that offers signInViaGoogleApi via email/password.

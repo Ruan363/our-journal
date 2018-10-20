@@ -15,7 +15,7 @@ import com.razor.ourjournal.link_partner.viewmodel.LinkPartnerActivityViewModel;
 import com.razor.ourjournal.repository.IRepositoryCallback;
 import com.razor.ourjournal.repository.SharedPreferencesRepository;
 import com.razor.ourjournal.repository.UserRepository;
-import com.razor.ourjournal.timeline.view.TimelineActivity;
+import com.razor.ourjournal.screens.timeline.view.TimelineActivity;
 
 public class LinkPartnerActivity extends AppCompatActivity implements LinkPartnerActivityView, View.OnClickListener, IRepositoryCallback {
 

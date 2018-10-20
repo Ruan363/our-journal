@@ -1,12 +1,12 @@
-package com.razor.ourjournal.timeline.viewmodel;
+package com.razor.ourjournal.screens.timeline.viewmodel;
 
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.razor.ourjournal.repository.PostRepository;
-import com.razor.ourjournal.timeline.model.Post;
-import com.razor.ourjournal.timeline.view.TimelineFragmentView;
+import com.razor.ourjournal.screens.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.view.TimelineFragmentView;
 
 import java.util.ArrayList;
 

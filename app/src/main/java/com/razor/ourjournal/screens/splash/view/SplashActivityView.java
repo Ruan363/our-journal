@@ -1,4 +1,4 @@
-package com.razor.ourjournal.splash.view;
+package com.razor.ourjournal.screens.splash.view;
 
 
 public interface SplashActivityView {

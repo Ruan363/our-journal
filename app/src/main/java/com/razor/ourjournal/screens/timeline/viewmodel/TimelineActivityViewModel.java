@@ -1,7 +1,7 @@
-package com.razor.ourjournal.timeline.viewmodel;
+package com.razor.ourjournal.screens.timeline.viewmodel;
 
 
-import com.razor.ourjournal.timeline.view.TimelineActivityView;
+import com.razor.ourjournal.screens.timeline.view.TimelineActivityView;
 
 public class TimelineActivityViewModel {
 

@@ -1,4 +1,4 @@
-package com.razor.ourjournal.add_post.view;
+package com.razor.ourjournal.screens.add_post.view;
 
 
 public interface AddPostActivityView {
@@ -13,4 +13,6 @@ public interface AddPostActivityView {
     void hideProgressLoader();
 
     void closeScreen();
+
+    void enableUiElements();
 }

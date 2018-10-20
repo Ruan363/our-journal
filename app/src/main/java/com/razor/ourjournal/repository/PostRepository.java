@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.timeline.model.Post;
+import com.razor.ourjournal.screens.timeline.model.Post;
 import com.razor.ourjournal.utils.ConnectivityUtils;
 
 import java.util.ArrayList;
@@ -46,8 +46,17 @@ public class PostRepository implements IPostRepository {
     @Override
     public void addPost(Post post) {
         if (ConnectivityUtils.isNetworkAvailable(context)) {
-            postDatabaseReference.removeEventListener(getPostsListener);
-            postDatabaseReference.setValue(post);
+            postDatabaseReference.child(String.valueOf(post.hashCode())).setValue(post, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError == null) {
+                        repositoryCallback.onSuccess(new Bundle());
+                    } else {
+                        callBackOnCancelled("Failed to add posts");
+                    }
+                }
+            });
+
         }
         else {
             callBackOnCancelled(context.getString(R.string.error_connection_failed));
@@ -58,8 +67,13 @@ public class PostRepository implements IPostRepository {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             ArrayList<Post> posts = new ArrayList<>();
-            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                posts.add(postSnapshot.getValue(Post.class));
+            try {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Post postSnapshotValue = postSnapshot.getValue(Post.class);
+                    posts.add(postSnapshotValue);
+                }
+            } catch (Exception exception) {
+                Log.e(PostRepository.class.getName(), "Failed to convert to post", exception.getCause());
             }
 
             Bundle bundle = new Bundle();

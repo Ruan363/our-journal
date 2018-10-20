@@ -1,9 +1,9 @@
-package com.razor.ourjournal.splash.viewmodel;
+package com.razor.ourjournal.screens.splash.viewmodel;
 
 
 import android.os.Handler;
 
-import com.razor.ourjournal.splash.view.SplashActivityView;
+import com.razor.ourjournal.screens.splash.view.SplashActivityView;
 
 public class SplashActivityViewModel {
 

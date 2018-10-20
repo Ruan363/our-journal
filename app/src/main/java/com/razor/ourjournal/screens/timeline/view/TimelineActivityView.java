@@ -1,4 +1,4 @@
-package com.razor.ourjournal.timeline.view;
+package com.razor.ourjournal.screens.timeline.view;
 
 
 public interface TimelineActivityView {

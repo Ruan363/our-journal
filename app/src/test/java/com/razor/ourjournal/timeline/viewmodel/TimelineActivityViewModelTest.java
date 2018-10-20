@@ -1,6 +1,7 @@
 package com.razor.ourjournal.timeline.viewmodel;
 
-import com.razor.ourjournal.timeline.view.TimelineActivityView;
+import com.razor.ourjournal.screens.timeline.view.TimelineActivityView;
+import com.razor.ourjournal.screens.timeline.viewmodel.TimelineActivityViewModel;
 
 import org.junit.Before;
 import org.junit.Test;

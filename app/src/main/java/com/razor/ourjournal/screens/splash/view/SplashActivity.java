@@ -1,6 +1,5 @@
-package com.razor.ourjournal.splash.view;
+package com.razor.ourjournal.screens.splash.view;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +7,7 @@ import android.view.View;
 
 import com.razor.ourjournal.R;
 import com.razor.ourjournal.login.view.LoginActivity;
-import com.razor.ourjournal.splash.viewmodel.SplashActivityViewModel;
-import com.razor.ourjournal.timeline.view.TimelineActivity;
+import com.razor.ourjournal.screens.splash.viewmodel.SplashActivityViewModel;
 
 public class SplashActivity extends AppCompatActivity implements SplashActivityView {
 

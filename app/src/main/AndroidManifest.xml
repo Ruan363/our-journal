@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".splash.view.SplashActivity"
+            android:name=".screens.splash.view.SplashActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,13 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".timeline.view.TimelineActivity" />
+        <activity
+            android:name=".screens.timeline.view.TimelineActivity"
+            android:label="@string/timeline_title"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".login.view.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".link_partner.view.LinkPartnerActivity"/>
-        <activity android:name=".add_post.view.AddPostActivity"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".link_partner.view.LinkPartnerActivity" />
+        <activity android:name=".screens.add_post.view.AddPostActivity" />
+        <activity
+            android:name=".screens.BaseDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
