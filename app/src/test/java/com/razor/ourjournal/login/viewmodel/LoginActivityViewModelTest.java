@@ -37,13 +37,6 @@ public class LoginActivityViewModelTest {
     }
 
     @Test
-    public void login_when_signInButtonClicked() throws Exception {
-        viewModel.signInClicked();
-
-        verify(view).signInViaGoogleApi();
-    }
-
-    @Test
     public void checkSharedPreffsForLinkedPartner_if_firebaseUserNotNull() throws Exception {
         FirebaseUser firebaseUser = mock(FirebaseUser.class);
 
@@ -72,59 +65,6 @@ public class LoginActivityViewModelTest {
         viewModel.handleFirebaseUser(firebaseUser);
 
         verify(view).navigateToLinkPartnerActivity();
-    }
-
-    @Test
-    public void firebaseAuthWithGoogle_when_googleSignIn_successful() throws Exception {
-        GoogleSignInResult googleSignInResult = mock(GoogleSignInResult.class);
-        GoogleSignInAccount googleSignInAccount = mock(GoogleSignInAccount.class);
-
-        when(googleSignInResult.isSuccess()).thenReturn(true);
-        when(googleSignInResult.getSignInAccount()).thenReturn(googleSignInAccount);
-
-        viewModel.handleGoogleSignInResult(googleSignInResult);
-
-        verify(view).firebaseAuthWithGoogle(googleSignInAccount);
-    }
-
-    @Test
-    public void showSnackbar_when_googleSignIn_unsuccessful() throws Exception {
-        GoogleSignInResult googleSignInResult = mock(GoogleSignInResult.class);
-
-        when(googleSignInResult.isSuccess()).thenReturn(false);
-
-        viewModel.handleGoogleSignInResult(googleSignInResult);
-
-        verify(view).showSnackbar(R.string.error_sign_in_failed);
-    }
-
-    @Test
-    public void goToTimelineActivity_when_firebaseSignIn_successful() throws Exception {
-        Task authTask = mock(Task.class);
-
-        when(authTask.isSuccessful()).thenReturn(true);
-
-        viewModel.firebaseSignInComplete(authTask);
-
-        verify(view).navigateToTimelineActivity();
-    }
-
-    @Test
-    public void showSnackbar_when_firebaseSignIn_unsuccessful() throws Exception {
-        Task authTask = mock(Task.class);
-
-        when(authTask.isSuccessful()).thenReturn(false);
-
-        viewModel.firebaseSignInComplete(authTask);
-
-        verify(view).showSnackbar(R.string.error_authentication_failed);
-    }
-
-    @Test
-    public void showSnackbar_when_connection_failed() throws Exception {
-        viewModel.connectionFailed();
-
-        verify(view).showSnackbar(R.string.error_connection_failed);
     }
 
     @Test

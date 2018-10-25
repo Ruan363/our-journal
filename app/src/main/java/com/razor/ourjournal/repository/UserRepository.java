@@ -3,6 +3,7 @@ package com.razor.ourjournal.repository;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +29,7 @@ public class UserRepository implements IUserRepository {
         this.repositoryCallback = repositoryCallback;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         usersDatabaseReference = FirebaseDatabase.getInstance().getReference().child(USERS);
+        Log.i("", "");
     }
 
     @Override

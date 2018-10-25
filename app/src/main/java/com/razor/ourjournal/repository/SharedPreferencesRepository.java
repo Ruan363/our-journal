@@ -3,6 +3,7 @@ package com.razor.ourjournal.repository;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.razor.ourjournal.R;
 
@@ -14,6 +15,7 @@ public class SharedPreferencesRepository implements ISharedPreferencesRepository
     public SharedPreferencesRepository(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.preferences_file_key), Context.MODE_PRIVATE);
+        Log.i("", "");
     }
 
     @Override

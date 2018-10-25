@@ -41,4 +41,8 @@
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="error_message_too_short">Too short</string>
+
+    <string name="facebook_app_id">279887969314389</string>
+    <string name="facebook_application_id">279887969314389</string>
+    <string name="fb_login_protocol_scheme">fb279887969314389</string>
 </resources>
