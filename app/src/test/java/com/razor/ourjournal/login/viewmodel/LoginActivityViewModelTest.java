@@ -6,8 +6,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.login.view.LoginActivityView;
+import com.razor.ourjournal.screens.login.view.LoginActivityView;
 import com.razor.ourjournal.repository.ISharedPreferencesRepository;
+import com.razor.ourjournal.screens.login.viewmodel.LoginActivityViewModel;
 
 import org.junit.Before;
 import org.junit.Test;

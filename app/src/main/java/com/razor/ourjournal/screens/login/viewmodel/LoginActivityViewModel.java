@@ -1,4 +1,4 @@
-package com.razor.ourjournal.login.viewmodel;
+package com.razor.ourjournal.screens.login.viewmodel;
 
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -7,7 +7,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.login.view.LoginActivityView;
+import com.razor.ourjournal.screens.login.view.LoginActivityView;
 import com.razor.ourjournal.repository.ISharedPreferencesRepository;
 
 public class LoginActivityViewModel {

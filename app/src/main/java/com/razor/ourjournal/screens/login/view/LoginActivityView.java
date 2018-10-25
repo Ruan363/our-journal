@@ -1,4 +1,4 @@
-package com.razor.ourjournal.login.view;
+package com.razor.ourjournal.screens.login.view;
 
 
 import android.support.annotation.StringRes;

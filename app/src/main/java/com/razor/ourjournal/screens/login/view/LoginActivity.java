@@ -1,4 +1,4 @@
-package com.razor.ourjournal.login.view;
+package com.razor.ourjournal.screens.login.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,7 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.razor.ourjournal.R;
 import com.razor.ourjournal.link_partner.view.LinkPartnerActivity;
-import com.razor.ourjournal.login.viewmodel.LoginActivityViewModel;
+import com.razor.ourjournal.screens.login.viewmodel.LoginActivityViewModel;
 import com.razor.ourjournal.repository.SharedPreferencesRepository;
 import com.razor.ourjournal.screens.signup.SignUpActivity;
 import com.razor.ourjournal.screens.timeline.view.TimelineActivity;

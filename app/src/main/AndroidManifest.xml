@@ -24,7 +24,7 @@
             android:label="@string/timeline_title"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".login.view.LoginActivity"
+            android:name=".screens.login.view.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
         <activity android:name=".link_partner.view.LinkPartnerActivity" />

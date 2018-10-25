@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.login.view.LoginActivity;
+import com.razor.ourjournal.screens.login.view.LoginActivity;
 import com.razor.ourjournal.screens.splash.viewmodel.SplashActivityViewModel;
 
 public class SplashActivity extends AppCompatActivity implements SplashActivityView {
