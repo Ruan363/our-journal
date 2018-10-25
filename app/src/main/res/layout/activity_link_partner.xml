@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="@dimen/default_16dp"
-    tools:context="com.razor.ourjournal.link_partner.view.LinkPartnerActivity">
+    tools:context="com.razor.ourjournal.screens.link_partner.view.LinkPartnerActivity">
 
     <TextView
         android:id="@+id/link_partner_title"

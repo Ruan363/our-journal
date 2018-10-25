@@ -1,7 +1,7 @@
-package com.razor.ourjournal.link_partner.viewmodel;
+package com.razor.ourjournal.screens.link_partner.viewmodel;
 
 
-import com.razor.ourjournal.link_partner.view.LinkPartnerActivityView;
+import com.razor.ourjournal.screens.link_partner.view.LinkPartnerActivityView;
 import com.razor.ourjournal.repository.ISharedPreferencesRepository;
 import com.razor.ourjournal.repository.IUserRepository;
 

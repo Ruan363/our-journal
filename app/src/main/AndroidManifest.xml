@@ -27,7 +27,7 @@
             android:name=".screens.login.view.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
-        <activity android:name=".link_partner.view.LinkPartnerActivity" />
+        <activity android:name=".screens.link_partner.view.LinkPartnerActivity" />
         <activity android:name=".screens.add_post.view.AddPostActivity" />
         <activity
             android:name=".screens.BaseDrawerActivity"

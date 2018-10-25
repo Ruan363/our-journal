@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.razor.ourjournal.R;
 import com.razor.ourjournal.screens.add_post.view.AddPostActivity;
-import com.razor.ourjournal.error.view.ErrorFragment;
+import com.razor.ourjournal.screens.error.view.ErrorFragment;
 import com.razor.ourjournal.repository.IRepositoryCallback;
 import com.razor.ourjournal.repository.PostRepository;
 import com.razor.ourjournal.screens.timeline.adapter.TimelineAdapter;

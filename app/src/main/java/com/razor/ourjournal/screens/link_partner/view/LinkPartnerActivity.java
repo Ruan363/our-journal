@@ -1,4 +1,4 @@
-package com.razor.ourjournal.link_partner.view;
+package com.razor.ourjournal.screens.link_partner.view;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.link_partner.viewmodel.LinkPartnerActivityViewModel;
+import com.razor.ourjournal.screens.link_partner.viewmodel.LinkPartnerActivityViewModel;
 import com.razor.ourjournal.repository.IRepositoryCallback;
 import com.razor.ourjournal.repository.SharedPreferencesRepository;
 import com.razor.ourjournal.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.razor.ourjournal.error.view;
+package com.razor.ourjournal.screens.error.view;
 
 
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.razor.ourjournal.link_partner.view;
+package com.razor.ourjournal.screens.link_partner.view;
 
 
 public interface LinkPartnerActivityView {

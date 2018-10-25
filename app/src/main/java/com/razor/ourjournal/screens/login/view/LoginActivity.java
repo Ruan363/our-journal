@@ -28,7 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.razor.ourjournal.R;
-import com.razor.ourjournal.link_partner.view.LinkPartnerActivity;
+import com.razor.ourjournal.screens.link_partner.view.LinkPartnerActivity;
 import com.razor.ourjournal.screens.login.viewmodel.LoginActivityViewModel;
 import com.razor.ourjournal.repository.SharedPreferencesRepository;
 import com.razor.ourjournal.screens.signup.SignUpActivity;
