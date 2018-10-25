@@ -15,4 +15,6 @@ public interface LoginActivityView {
     void showSnackbar(@StringRes int message);
 
     void navigateToLinkPartnerActivity();
+
+    void goToSignUpActivity();
 }

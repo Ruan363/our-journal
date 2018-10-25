@@ -14,7 +14,6 @@ import org.robolectric.annotation.Config;
 import static junit.framework.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class)
 public class SharedPreferencesRepositoryTest {
 
     @Test

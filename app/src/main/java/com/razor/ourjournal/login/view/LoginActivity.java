@@ -32,6 +32,7 @@ import com.razor.ourjournal.R;
 import com.razor.ourjournal.link_partner.view.LinkPartnerActivity;
 import com.razor.ourjournal.login.viewmodel.LoginActivityViewModel;
 import com.razor.ourjournal.repository.SharedPreferencesRepository;
+import com.razor.ourjournal.screens.signup.SignUpActivity;
 import com.razor.ourjournal.screens.timeline.view.TimelineActivity;
 
 /**
@@ -90,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
         @Override
         public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
             if (id == 12345 || id == EditorInfo.IME_NULL) {
-                    viewModel.signIn();
+                    viewModel.signInClicked();
                 return true;
             }
             return false;
@@ -98,17 +99,18 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
     };
 
     private void setUpUiElements() {
-        superLayout = (LinearLayout) findViewById(R.id.superLayout);
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        superLayout = findViewById(R.id.superLayout);
+        mEmailView = findViewById(R.id.email);
+        mPasswordView = findViewById(R.id.password);
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
         mPasswordView.setOnEditorActionListener(passwordEditorActionListener);
 
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        signInButton.setOnClickListener(this);
+//        SignInButton signInButton = findViewById(R.id.sign_in_button);
+//        signInButton.setSize(SignInButton.SIZE_STANDARD);
+//        signInButton.setOnClickListener(this);
+        findViewById(R.id.sign_up_button).setOnClickListener(this);
     }
 
     @Override
@@ -119,9 +121,11 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.sign_in_button:
-                viewModel.signIn();
-                break;
+//            case R.id.sign_in_button:
+//                viewModel.signInClicked();
+//                break;
+            case R.id.sign_up_button:
+                viewModel.signUpClicked();
         }
     }
 
@@ -171,6 +175,12 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
     @Override
     public void showSnackbar(@StringRes int message) {
         Snackbar.make(superLayout, getString(message), Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void goToSignUpActivity() {
+        Intent destination = new Intent(this, SignUpActivity.class);
+        startActivity(destination);
     }
 }
 

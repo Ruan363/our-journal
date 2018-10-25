@@ -129,11 +129,7 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
 
     @Override
     public void onSuccess(@NonNull Bundle bundle) {
-        hideProgressLoader();
-
-        enableUiElements();
-
-        closeScreen();
+        viewModel.postOnSuccess();
     }
 
     @Override

@@ -36,6 +36,11 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
+    public void registerUser(User user) {
+        usersDatabaseReference.child(firebaseUser.getUid()).setValue(user).addOnCompleteListener(partnerLinkListener);
+    }
+
+    @Override
     public FirebaseUser getFirebaseUser() {
         return firebaseUser;
     }

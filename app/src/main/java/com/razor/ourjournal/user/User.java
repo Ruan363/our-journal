@@ -6,8 +6,11 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class User {
 
+    private String firstName;
+    private String lastName;
     private String username;
     private String partnerEmail;
+    private String password;
 
     public User(String username, String partnerEmail) {
         this.username = username;

@@ -37,7 +37,7 @@ public class LoginActivityViewModelTest {
 
     @Test
     public void login_when_signInButtonClicked() throws Exception {
-        viewModel.signIn();
+        viewModel.signInClicked();
 
         verify(view).signInViaGoogleApi();
     }
@@ -124,5 +124,12 @@ public class LoginActivityViewModelTest {
         viewModel.connectionFailed();
 
         verify(view).showSnackbar(R.string.error_connection_failed);
+    }
+
+    @Test
+    public void goToSignUpActivity_when_signUpClicked() {
+        viewModel.signUpClicked();
+
+        verify(view).goToSignUpActivity();
     }
 }

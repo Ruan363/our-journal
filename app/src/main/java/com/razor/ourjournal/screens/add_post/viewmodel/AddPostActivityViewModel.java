@@ -65,4 +65,12 @@ public class AddPostActivityViewModel {
     private String getPartnerEmail() {
         return sharedPreferencesRepository.getPartnerEmail();
     }
+
+    public void postOnSuccess() {
+        view.hideProgressLoader();
+
+        view.enableUiElements();
+
+        view.closeScreen();
+    }
 }

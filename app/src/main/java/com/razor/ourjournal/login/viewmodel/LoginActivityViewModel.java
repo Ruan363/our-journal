@@ -21,7 +21,7 @@ public class LoginActivityViewModel {
         this.sharedPreferencesRepository = sharedPreferencesRepository;
     }
 
-    public void signIn() {
+    public void signInClicked() {
         view.signInViaGoogleApi();
     }
 
@@ -54,5 +54,9 @@ public class LoginActivityViewModel {
 
     public void connectionFailed() {
         view.showSnackbar(R.string.error_connection_failed);
+    }
+
+    public void signUpClicked() {
+        view.goToSignUpActivity();
     }
 }

@@ -25,17 +25,18 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class)
 public class AddPostActivityViewModelTest {
 
     @Mock
-    AddPostActivityView view;
+    private AddPostActivityView view;
     @Mock
-    IPostRepository postRepository;
+    private IPostRepository postRepository;
     @Mock
-    ISharedPreferencesRepository sharedPreferencesRepository;
+    private ISharedPreferencesRepository sharedPreferencesRepository;
     @Mock
-    IUserRepository userRepository;
+    private IUserRepository userRepository;
+    @Mock
+    private FirebaseUser firebaseUser;
 
     private AddPostActivityViewModel viewModel;
 
@@ -48,6 +49,7 @@ public class AddPostActivityViewModelTest {
     public void setUp() throws Exception {
         initMocks(this);
 
+        when(userRepository.getFirebaseUser()).thenReturn(firebaseUser);
         viewModel = new AddPostActivityViewModel(view, postRepository, sharedPreferencesRepository, userRepository);
     }
 
@@ -121,10 +123,11 @@ public class AddPostActivityViewModelTest {
 
     @Test
     public void hideProgressLoader_closeScreen_when_postsUpdated() throws Exception {
-        viewModel.postsUpdated();
+        viewModel.postOnSuccess();
 
         InOrder inOrder = inOrder(view);
         inOrder.verify(view).hideProgressLoader();
+        inOrder.verify(view).enableUiElements();
         inOrder.verify(view).closeScreen();
     }
 }
