@@ -92,6 +92,7 @@ public class PostRepository implements IPostRepository {
     };
 
     private void callBackOnCancelled(String errorMessage) {
+        Log.e(PostRepository.class.getName(), "Error (OnCancelled)" + errorMessage);
         Bundle bundle = new Bundle();
         bundle.putString(ERROR_MESSAGE, errorMessage);
 

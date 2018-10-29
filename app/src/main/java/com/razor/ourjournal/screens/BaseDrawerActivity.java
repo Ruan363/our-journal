@@ -10,7 +10,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.razor.ourjournal.R;
 import com.razor.ourjournal.screens.timeline.view.TimelineActivity;
 
@@ -19,6 +23,13 @@ public class BaseDrawerActivity extends AppCompatActivity implements NavigationV
     protected void setContent(@LayoutRes int layout) {
         setContentView(layout);
 
+        setupDrawer();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void setupDrawer() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -28,8 +39,16 @@ public class BaseDrawerActivity extends AppCompatActivity implements NavigationV
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        NavigationView navigationView = drawer.findViewById(R.id.nav_view);
+        View view = navigationView.getHeaderView(0);
+        TextView nameTextView = view.findViewById(R.id.drawer_name);
+        TextView emailTextView = view.findViewById(R.id.drawer_email);
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            nameTextView.setText(firebaseUser.getDisplayName());
+            emailTextView.setText(firebaseUser.getEmail());
+        }
     }
 
     @Override
@@ -51,7 +70,7 @@ public class BaseDrawerActivity extends AppCompatActivity implements NavigationV
         if (id == R.id.nav_timeline) {
             navigateToTimelineActivity();
         } else if (id == R.id.nav_settings) {
-
+            navigateToSettingsActivity();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
