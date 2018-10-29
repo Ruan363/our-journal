@@ -67,6 +67,23 @@ public class Post implements Parcelable {
         this.date = new Date().getTime();
     }
 
+    public String getPostId() {
+        return getPostId(userEmailPostedBy, userEmailPostedFor);
+    }
+
+    public static String getPostId(String idA, String idB) {
+        int compare = idA.toLowerCase().compareTo(idB.toLowerCase());
+        String postId;
+        if (compare < 0) {
+            postId = String.format("%s_%s", idA, idB);
+        }
+        else {
+            postId = String.format("%s_%s", idB, idA);
+        }
+
+        return postId.replace(".", "");
+    }
+
     @Override
     public int describeContents() {
         return 0;

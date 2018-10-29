@@ -1,6 +1,8 @@
 package com.razor.ourjournal.screens.timeline.adapter;
 
 
+import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +23,11 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
     public static class TimelineItemViewHolder extends RecyclerView.ViewHolder {
         public View view;
         public View viewLeftDivider;
+        public View viewLeftDividerBottom;
         public View viewRightDivider;
+        public View viewRightDividerBottom;
+        public CardView cardLeftPost;
+        public CardView cardRightPost;
         public TextView tvLeftPostTitle;
         public TextView tvRightPostTitle;
         public TextView tvPostDate;
@@ -32,12 +38,16 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
             super(v);
             this.view = v;
             this.viewLeftDivider = v.findViewById(R.id.viewLeftDivider);
+            this.viewLeftDividerBottom = v.findViewById(R.id.viewLeftDividerBottom);
             this.viewRightDivider = v.findViewById(R.id.viewRightDivider);
+            this.viewRightDividerBottom = v.findViewById(R.id.viewRightDividerBottom);
             this.tvLeftPostTitle = v.findViewById(R.id.tvLeftPostTitle);
             this.tvRightPostTitle = v.findViewById(R.id.tvRightPostTitle);
             this.tvPostDate = v.findViewById(R.id.tvPostDate);
             this.tvLeftPostContent = v.findViewById(R.id.tvLeftPostContent);
             this.tvRightPostContent = v.findViewById(R.id.tvRightPostContent);
+            this.cardLeftPost = v.findViewById(R.id.cardLeftPost);
+            this.cardRightPost = v.findViewById(R.id.cardRightPost);
         }
     }
 
@@ -45,11 +55,11 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
         this.posts = (ArrayList<Post>) posts;
     }
 
+    @NonNull
     @Override
     public TimelineItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.timeline_row, parent, false);
-        TimelineItemViewHolder vh = new TimelineItemViewHolder(v);
-        return vh;
+        return new TimelineItemViewHolder(v);
     }
 
     @Override
@@ -79,15 +89,15 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
     }
 
     private void leftSideInvisible(TimelineItemViewHolder holder) {
-        holder.tvLeftPostTitle.setVisibility(View.INVISIBLE);
-        holder.tvLeftPostContent.setVisibility(View.INVISIBLE);
+        holder.cardLeftPost.setVisibility(View.INVISIBLE);
         holder.viewLeftDivider.setVisibility(View.INVISIBLE);
+        holder.viewLeftDividerBottom.setVisibility(View.INVISIBLE);
     }
 
     private void rightSideVisible(TimelineItemViewHolder holder) {
-        holder.tvRightPostTitle.setVisibility(View.VISIBLE);
-        holder.tvRightPostContent.setVisibility(View.VISIBLE);
+        holder.cardRightPost.setVisibility(View.VISIBLE);
         holder.viewRightDivider.setVisibility(View.VISIBLE);
+        holder.viewRightDividerBottom.setVisibility(View.VISIBLE);
     }
 
     private void setLeftContent(TimelineItemViewHolder holder, Post post) {
@@ -96,15 +106,15 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
     }
 
     private void rightSideInvisible(TimelineItemViewHolder holder) {
-        holder.tvRightPostTitle.setVisibility(View.INVISIBLE);
-        holder.tvRightPostContent.setVisibility(View.INVISIBLE);
+        holder.cardRightPost.setVisibility(View.INVISIBLE);
         holder.viewRightDivider.setVisibility(View.INVISIBLE);
+        holder.viewRightDividerBottom.setVisibility(View.INVISIBLE);
     }
 
     private void leftSideVisible(TimelineItemViewHolder holder) {
-        holder.tvLeftPostTitle.setVisibility(View.VISIBLE);
-        holder.tvLeftPostContent.setVisibility(View.VISIBLE);
+        holder.cardLeftPost.setVisibility(View.VISIBLE);
         holder.viewLeftDivider.setVisibility(View.VISIBLE);
+        holder.viewLeftDividerBottom.setVisibility(View.VISIBLE);
     }
 
     @Override

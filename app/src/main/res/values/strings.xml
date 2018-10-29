@@ -22,11 +22,13 @@
 
     <string name="error_message_required">Required</string>
     <string name="email_address_hint">Email Address</string>
+    <string name="link_partner_title">Link Partner</string>
     <string name="link_partner_question_title">Who do you want to share this Journal with?</string>
     <string name="preferences_file_key">com.razor.ourjournal.FIREBASE</string>
     <string name="shared_pref_key_partner_email">partner_email</string>
     <string name="share_button_text">SHARE</string>
     <string name="submit_post_button_text">Post</string>
+    <string name="post_title">Add Post</string>
     <string name="post_title_text">Title</string>
     <string name="post_what_happened_text">What Happened?</string>
     <string name="title_activity_main">MainActivity</string>

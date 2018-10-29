@@ -51,8 +51,14 @@
             android:name=".screens.login.view.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
-        <activity android:name=".screens.link_partner.view.LinkPartnerActivity" />
-        <activity android:name=".screens.add_post.view.AddPostActivity" />
+        <activity
+            android:name=".screens.link_partner.view.LinkPartnerActivity"
+            android:label="@string/link_partner_title"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".screens.add_post.view.AddPostActivity"
+            android:label="@string/post_title_text"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".screens.BaseDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar"/>

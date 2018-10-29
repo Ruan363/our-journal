@@ -9,27 +9,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/default_8dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvLeftPostTitle"
-            android:layout_width="@dimen/default_0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            tools:text="@string/test_title"/>
-
-        <View
-            android:id="@+id/viewLeftDivider"
-            android:layout_width="@dimen/timeline_horizontal_divider_width"
-            android:layout_height="1dp"
             android:layout_marginLeft="@dimen/default_4dp"
             android:layout_marginRight="@dimen/default_4dp"
             android:layout_gravity="center_vertical"
-            android:background="@color/black"/>
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/viewLeftDivider"
+                android:layout_width="@dimen/timeline_horizontal_divider_width"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/default_4dp"
+                android:layout_marginRight="@dimen/default_4dp"
+                android:background="@color/black"/>
+
+            <View
+                android:id="@+id/viewLeftDividerBottom"
+                android:layout_width="@dimen/timeline_horizontal_divider_width_third"
+                android:layout_height="2dp"
+                android:layout_marginLeft="@dimen/default_4dp"
+                android:layout_marginRight="@dimen/default_4dp"
+                android:background="@color/black"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvPostDate"
@@ -39,26 +46,32 @@
             android:textColor="@color/colorPrimary"
             tools:text="2 Sept"/>
 
-        <View
-            android:id="@+id/viewRightDivider"
-            android:layout_width="@dimen/timeline_horizontal_divider_width"
-            android:layout_height="1dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_gravity="center_vertical"
-            android:background="@color/black"/>
-
-        <TextView
-            android:id="@+id/tvRightPostTitle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            tools:text="Title of Post B"/>
+            android:layout_marginLeft="@dimen/default_4dp"
+            android:layout_marginRight="@dimen/default_4dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/viewRightDivider"
+                android:layout_width="@dimen/timeline_horizontal_divider_width"
+                android:layout_height="1dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@color/black"/>
+
+            <View
+                android:id="@+id/viewRightDividerBottom"
+                android:layout_width="@dimen/timeline_horizontal_divider_width_third"
+                android:layout_height="2dp"
+                android:layout_marginLeft="@dimen/default_4dp"
+                android:layout_marginRight="@dimen/default_4dp"
+                android:layout_gravity="end"
+                android:background="@color/black"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -67,14 +80,44 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvLeftPostContent"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardLeftPost"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="@dimen/default_4dp"
             android:maxLines="4"
             android:ellipsize="end"
-            tools:text="@string/test_content"/>
+            tools:text="@string/test_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvLeftPostTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_8dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    tools:text="@string/test_title"/>
+
+                <TextView
+                    android:id="@+id/tvLeftPostContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="4"
+                    android:ellipsize="end"
+                    tools:text="@string/test_content"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
         <View
             android:id="@+id/viewCenterDivider"
@@ -84,14 +127,44 @@
             android:layout_marginRight="20dp"
             android:background="@color/black"/>
 
-        <TextView
-            android:id="@+id/tvRightPostContent"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardRightPost"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="@dimen/default_4dp"
             android:maxLines="4"
             android:ellipsize="end"
-            tools:text="Loooorem ipsum ipsum"/>
+            tools:text="@string/test_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvRightPostTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_8dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    tools:text="@string/test_title"/>
+
+                <TextView
+                    android:id="@+id/tvRightPostContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="4"
+                    android:ellipsize="end"
+                    tools:text="@string/test_content"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 

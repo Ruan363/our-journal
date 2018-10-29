@@ -3,8 +3,11 @@ package com.razor.ourjournal.repository;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,14 +32,13 @@ public class PostRepository implements IPostRepository {
     public PostRepository(IRepositoryCallback repositoryCallback, Context context) {
         this.repositoryCallback = repositoryCallback;
         this.context = context;
-
-        postDatabaseReference = FirebaseDatabase.getInstance().getReference().child(POSTS);
     }
 
     @Override
-    public void getPosts() {
+    public void getPosts(String postId) {
+        postDatabaseReference = FirebaseDatabase.getInstance().getReference(String.format("%s/%s", POSTS, postId));
         if (ConnectivityUtils.isNetworkAvailable(context)) {
-            postDatabaseReference.addValueEventListener(getPostsListener);
+            postDatabaseReference.orderByChild("date").addValueEventListener(getPostsListener);
         }
         else {
             callBackOnCancelled(context.getString(R.string.error_connection_failed));
@@ -45,8 +47,9 @@ public class PostRepository implements IPostRepository {
 
     @Override
     public void addPost(Post post) {
+        postDatabaseReference = FirebaseDatabase.getInstance().getReference(POSTS);
         if (ConnectivityUtils.isNetworkAvailable(context)) {
-            postDatabaseReference.child(String.valueOf(post.hashCode())).setValue(post, new DatabaseReference.CompletionListener() {
+            postDatabaseReference.child(post.getPostId()).child(String.valueOf(post.hashCode())).setValue(post, new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if (databaseError == null) {

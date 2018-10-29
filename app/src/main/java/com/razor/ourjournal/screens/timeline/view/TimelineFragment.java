@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.razor.ourjournal.R;
+import com.razor.ourjournal.repository.SharedPreferencesRepository;
+import com.razor.ourjournal.repository.UserRepository;
 import com.razor.ourjournal.screens.add_post.view.AddPostActivity;
 import com.razor.ourjournal.screens.error.view.ErrorFragment;
 import com.razor.ourjournal.repository.IRepositoryCallback;
@@ -38,7 +40,8 @@ public class TimelineFragment extends Fragment implements TimelineFragmentView, 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel = new TimelineFragmentViewModel(this, new PostRepository(this, getContext()));
+        viewModel = new TimelineFragmentViewModel(this, new PostRepository(this, getContext()),
+                new SharedPreferencesRepository(getContext()), new UserRepository());
     }
 
     @Nullable
