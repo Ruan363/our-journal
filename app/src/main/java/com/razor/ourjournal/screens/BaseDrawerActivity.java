@@ -16,9 +16,10 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.razor.ourjournal.R;
+import com.razor.ourjournal.screens.settings.SettingsActivity;
 import com.razor.ourjournal.screens.timeline.view.TimelineActivity;
 
-public class BaseDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class BaseDrawerActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected void setContent(@LayoutRes int layout) {
         setContentView(layout);
@@ -53,8 +54,8 @@ public class BaseDrawerActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
@@ -79,16 +80,14 @@ public class BaseDrawerActivity extends AppCompatActivity implements NavigationV
     }
 
     private void navigateToTimelineActivity() {
-        Intent destination = new Intent(this, TimelineActivity.class);
+        Intent destination = new Intent(getApplicationContext(), TimelineActivity.class);
         destination.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(destination);
-        finish();
     }
 
     private void navigateToSettingsActivity() {
-        Intent destination = new Intent(this, TimelineActivity.class);
+        Intent destination = new Intent(getApplicationContext(), SettingsActivity.class);
         destination.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(destination);
-        finish();
     }
 }

@@ -30,12 +30,13 @@ public class LinkPartnerActivityViewModel {
     }
 
     public void linkUserWithPartner() {
+        view.showProgress();
         userRepository.linkWithPartner(partnerEmail);
     }
 
     public void linkPartnerOnSuccess() {
         sharedPreferencesRepository.setPartnerEmail(partnerEmail);
-
+        view.hideProgress();
         view.navigateToTimeline();
     }
 }

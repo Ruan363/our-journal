@@ -8,4 +8,8 @@ public interface LinkPartnerActivityView {
     void hideShareButton();
 
     void navigateToTimeline();
+
+    void showProgress();
+
+    void hideProgress();
 }

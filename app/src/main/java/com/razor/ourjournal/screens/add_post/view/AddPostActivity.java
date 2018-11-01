@@ -39,10 +39,10 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
     }
 
     private void initUiElements() {
-        titleEditText = (TextInputEditText) findViewById(R.id.edtPostTitle);
-        detailEditText = (TextInputEditText) findViewById(R.id.edtPostDetail);
-        postButton = (Button) findViewById(R.id.btnPost);
-        progPost = (ProgressBar) findViewById(R.id.progPost);
+        titleEditText = findViewById(R.id.edtPostTitle);
+        detailEditText = findViewById(R.id.edtPostDetail);
+        postButton = findViewById(R.id.btnPost);
+        progPost = findViewById(R.id.progPost);
 
         titleEditText.addTextChangedListener(titleTextWatcher);
         detailEditText.addTextChangedListener(detailTextWatcher);

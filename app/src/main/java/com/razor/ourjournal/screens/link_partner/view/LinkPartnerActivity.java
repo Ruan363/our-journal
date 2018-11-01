@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.razor.ourjournal.R;
 import com.razor.ourjournal.screens.link_partner.viewmodel.LinkPartnerActivityViewModel;
@@ -22,6 +23,7 @@ public class LinkPartnerActivity extends AppCompatActivity implements LinkPartne
     Button shareButton;
     TextInputEditText emailAddressInput;
     LinkPartnerActivityViewModel viewModel;
+    FrameLayout progressContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,9 @@ public class LinkPartnerActivity extends AppCompatActivity implements LinkPartne
     }
 
     private void initUiElements() {
-        shareButton = (Button) findViewById(R.id.btnShare);
-        emailAddressInput = (TextInputEditText) findViewById(R.id.edtEmailAddress);
+        shareButton = findViewById(R.id.btnShare);
+        emailAddressInput = findViewById(R.id.edtEmailAddress);
+        progressContainer = findViewById(R.id.progress_container);
 
         emailAddressInput.addTextChangedListener(emailAddressInputTextChangedListener);
         shareButton.setOnClickListener(this);
@@ -90,5 +93,15 @@ public class LinkPartnerActivity extends AppCompatActivity implements LinkPartne
     @Override
     public void onCancelled(@NonNull Bundle bundle) {
 
+    }
+
+    @Override
+    public void showProgress() {
+        progressContainer.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressContainer.setVisibility(View.GONE);
     }
 }

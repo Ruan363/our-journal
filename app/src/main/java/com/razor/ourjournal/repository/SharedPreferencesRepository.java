@@ -33,4 +33,8 @@ public class SharedPreferencesRepository implements ISharedPreferencesRepository
     public String getPartnerEmail() {
         return sharedPreferences.getString(context.getString(R.string.shared_pref_key_partner_email), null);
     }
+
+    public void clearPreferences() {
+        sharedPreferences.edit().clear().commit();
+    }
 }

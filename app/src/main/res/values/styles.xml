@@ -19,4 +19,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="Base.ThemeOverlay.AppCompat.Light" />
 
+    <style name="SmallHeadingText">
+        <item name="android:textColor">@color/labelGrey</item>
+        <item name="android:textSize">@dimen/default_14sp</item>
+    </style>
+
 </resources>

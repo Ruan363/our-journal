@@ -3,7 +3,10 @@ package com.razor.ourjournal.timeline.viewmodel;
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.razor.ourjournal.repository.PostRepository;
+import com.razor.ourjournal.repository.SharedPreferencesRepository;
+import com.razor.ourjournal.repository.UserRepository;
 import com.razor.ourjournal.screens.timeline.model.Post;
 import com.razor.ourjournal.screens.timeline.view.TimelineFragmentView;
 import com.razor.ourjournal.screens.timeline.viewmodel.TimelineFragmentViewModel;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 
 import static com.razor.ourjournal.constant.TimelineConstant.BUNDLE_IDENTIFIER.ERROR_MESSAGE;
 import static com.razor.ourjournal.constant.TimelineConstant.BUNDLE_IDENTIFIER.RESULT;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -27,6 +31,12 @@ public class TimelineFragmentViewModelTest {
     @Mock
     PostRepository postRepository;
     @Mock
+    UserRepository userRepository;
+    @Mock
+    SharedPreferencesRepository sharedPreferencesRepository;
+    @Mock
+    FirebaseUser firebaseUser;
+    @Mock
     Bundle bundle;
 
     TimelineFragmentViewModel viewModel;
@@ -36,14 +46,20 @@ public class TimelineFragmentViewModelTest {
     public void setUp() throws Exception {
         initMocks(this);
 
-        viewModel = new TimelineFragmentViewModel(view, postRepository);
+        viewModel = new TimelineFragmentViewModel(view, postRepository, sharedPreferencesRepository, userRepository);
     }
 
     @Test
     public void getPosts_when_viewModelCreated() throws Exception {
+        String userEmail = "test.email@test.com";
+        String partnerEmail = "partner.email@test.com";
+        when(userRepository.getFirebaseUser()).thenReturn(firebaseUser);
+        when(firebaseUser.getEmail()).thenReturn(userEmail);
+        when(sharedPreferencesRepository.getPartnerEmail()).thenReturn(partnerEmail);
+
         viewModel.fetchPosts();
 
-        verify(postRepository).getPosts();
+        verify(postRepository).getPosts("partneremail@testcom_testemail@testcom");
     }
 
     @Test

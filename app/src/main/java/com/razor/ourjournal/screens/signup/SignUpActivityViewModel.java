@@ -1,6 +1,7 @@
 package com.razor.ourjournal.screens.signup;
 
 import com.razor.ourjournal.repository.IUserRepository;
+import com.razor.ourjournal.user.User;
 
 class SignUpActivityViewModel {
 
@@ -11,6 +12,6 @@ class SignUpActivityViewModel {
     }
 
     public void signUpClicked() {
-
+        userRepository.registerUser(new User("", ""));
     }
 }
