@@ -24,6 +24,7 @@ public class AddPostActivityViewModel {
     private FirebaseUser firebaseUser;
     private final IUploadRepository uploadRepository;
     private ISharedPreferencesRepository sharedPreferencesRepository;
+    private Post post;
 
     public AddPostActivityViewModel(AddPostActivityView view, IPostRepository postRepository, ISharedPreferencesRepository sharedPreferencesRepository, IUserRepository userRepository, IUploadRepository uploadRepository) {
         this.view = view;
@@ -54,33 +55,10 @@ public class AddPostActivityViewModel {
         }
     }
 
-    public void postClicked(@Nullable List<Uri> imageUriList) {
+    public void postClicked() {
         view.disableUiElements();
 
         view.showProgressLoader();
-
-        int postHashCode = addPost();
-
-        if (imageUriList != null && !imageUriList.isEmpty()) {
-            uploadImages(postHashCode, imageUriList);
-        }
-    }
-
-    private void uploadImages(int postHashCode, @NonNull List<Uri> imageUriList) {
-        String userEmail = firebaseUser.getEmail();
-        String partnerEmail = getPartnerEmail();
-
-        uploadRepository.uploadImageUriList(Post.getPostId(userEmail, partnerEmail), String.valueOf(postHashCode), imageUriList);
-    }
-
-    private int addPost() {
-        String userEmail = firebaseUser.getEmail();
-        String partnerEmail = getPartnerEmail();
-
-        Post post = new Post(title, description, userEmail, partnerEmail);
-        postRepository.addPost(post);
-
-        return post.hashCode();
     }
 
     private String getPartnerEmail() {
@@ -93,5 +71,24 @@ public class AddPostActivityViewModel {
         view.enableUiElements();
 
         view.closeScreen();
+    }
+
+    public void uploadPost(List<String> downloadUrlList) {
+        post.setDownloadUrlList(downloadUrlList);
+        postRepository.addPost(post);
+    }
+
+    public void uploadAttachments(@NonNull List<Uri> imageList) {
+        String userEmail = firebaseUser.getEmail();
+        String partnerEmail = getPartnerEmail();
+
+        uploadRepository.uploadImageUriList(Post.getPostId(userEmail, partnerEmail), String.valueOf(post.hashCode()), imageList);
+    }
+
+    public void generatePost() {
+        String userEmail = firebaseUser.getEmail();
+        String partnerEmail = getPartnerEmail();
+
+        post = new Post(title, description, userEmail, partnerEmail);
     }
 }

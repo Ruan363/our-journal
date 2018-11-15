@@ -5,8 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -49,20 +52,46 @@ public class UploadRepository implements IUploadRepository {
     private void uploadImageUri(StorageReference attachmentsReference, Uri uri) {
         final StorageReference imageReference = attachmentsReference.child(uri.getLastPathSegment());
         UploadTask uploadTask = imageReference.putFile(uri);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
+//        uploadTask.addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception exception) {
+//                Bundle bundle = new Bundle();
+//                bundle.putString(FROM, UPLOAD_REPO);
+//                bundle.putString(ERROR_MESSAGE, exception.getMessage());
+//                repositoryCallback.onCancelled(bundle);
+//            }
+//        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                Bundle bundle = new Bundle();
+//                bundle.putString(FROM, UPLOAD_REPO);
+//                repositoryCallback.onSuccess(bundle);
+//            }
+//        });
+
+        uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                Bundle bundle = new Bundle();
-                bundle.putString(FROM, UPLOAD_REPO);
-                bundle.putString(ERROR_MESSAGE, exception.getMessage());
-                repositoryCallback.onCancelled(bundle);
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+                return imageReference.getDownloadUrl();
             }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Bundle bundle = new Bundle();
-                bundle.putString(FROM, UPLOAD_REPO);
-                repositoryCallback.onSuccess(bundle);
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FROM, UPLOAD_REPO);
+                    bundle.putString(DOWNLOAD_URL, downloadUri.toString());
+                    repositoryCallback.onSuccess(bundle);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FROM, UPLOAD_REPO);
+                    bundle.putString(ERROR_MESSAGE, task.getException().getMessage());
+                    repositoryCallback.onCancelled(bundle);
+                }
             }
         });
     }

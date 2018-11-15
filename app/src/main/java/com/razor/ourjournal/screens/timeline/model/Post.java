@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.Date;
+import java.util.List;
 
 @IgnoreExtraProperties
 public class Post implements Parcelable {
@@ -16,6 +17,7 @@ public class Post implements Parcelable {
     private String userEmailPostedBy;
     private String userEmailPostedFor;
     private Long date;
+    private List<String> downloadUrlList;
 
     public Post() {
     }
@@ -120,5 +122,13 @@ public class Post implements Parcelable {
         result = 31 * result + (userEmailPostedBy != null ? userEmailPostedBy.hashCode() : 0);
         result = 31 * result + (userEmailPostedFor != null ? userEmailPostedFor.hashCode() : 0);
         return result;
+    }
+
+    public void setDownloadUrlList(List<String> downloadUrlList) {
+        this.downloadUrlList = downloadUrlList;
+    }
+
+    public List<String> getDownloadUrlList() {
+        return downloadUrlList;
     }
 }

@@ -39,13 +39,13 @@ import com.razor.ourjournal.utils.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.razor.ourjournal.constant.NavigationConstant.IDENTIFIER.DOWNLOAD_URL;
 import static com.razor.ourjournal.constant.NavigationConstant.IDENTIFIER.FROM;
 import static com.razor.ourjournal.constant.NavigationConstant.NAME.POST_REPO;
 import static com.razor.ourjournal.constant.NavigationConstant.NAME.UPLOAD_REPO;
@@ -73,6 +73,7 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
     private boolean postUploadSuccessful;
     private boolean imageUploadSuccessful;
     private int amountImagesSuccessfullyUploaded = 0;
+    private List<String> downloadUrlList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +173,13 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
         if (adapter != null) {
             imageList = adapter.getData();
         }
-        viewModel.postClicked(imageList);
+        viewModel.generatePost();
+        viewModel.postClicked();
+        if (imageList == null || imageList.isEmpty()) {
+            viewModel.uploadPost(null);
+        } else {
+            viewModel.uploadAttachments(imageList);
+        }
     }
 
     TextWatcher titleTextWatcher = new TextWatcher() {
@@ -257,11 +264,20 @@ public class AddPostActivity extends AppCompatActivity implements AddPostActivit
         if (from.equals(POST_REPO)) {
             postUploadSuccessful = true;
         } else if (from.equals(UPLOAD_REPO)) {
+            String downloadUrl = bundle.getString(DOWNLOAD_URL);
+            if (downloadUrlList == null) {
+                downloadUrlList = new ArrayList<>();
+            }
+            downloadUrlList.add(downloadUrl);
             amountImagesSuccessfullyUploaded += 1;
             Toast.makeText(AddPostActivity.this, "Images Successfully uploaded: " + amountImagesSuccessfullyUploaded, Toast.LENGTH_SHORT).show();
             if (adapter.getItemCount() == amountImagesSuccessfullyUploaded) {
                 imageUploadSuccessful = true;
             }
+        }
+
+        if (!postUploadSuccessful && imageUploadSuccessful) {
+            viewModel.uploadPost(downloadUrlList);
         }
 
         if (postUploadSuccessful && (imageUploadSuccessful || adapter == null || adapter.getItemCount() == 0)) {

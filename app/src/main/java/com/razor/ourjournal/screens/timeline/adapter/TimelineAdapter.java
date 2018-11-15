@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.storage.StorageReference;
 import com.razor.ourjournal.R;
 import com.razor.ourjournal.repository.IUploadRepository;
+import com.razor.ourjournal.repository.UploadRepository;
 import com.razor.ourjournal.screens.timeline.model.Post;
 import com.razor.ourjournal.utils.DateUtils;
 
@@ -23,7 +24,6 @@ import java.util.List;
 
 public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.TimelineItemViewHolder> {
     private ArrayList<Post> posts;
-    private final IUploadRepository uploadRepository;
 
     public static class TimelineItemViewHolder extends RecyclerView.ViewHolder {
         public View view;
@@ -60,9 +60,8 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
         }
     }
 
-    public TimelineAdapter(List<Post> posts, IUploadRepository uploadRepository) {
+    public TimelineAdapter(List<Post> posts) {
         this.posts = (ArrayList<Post>) posts;
-        this.uploadRepository = uploadRepository;
     }
 
     @NonNull
@@ -98,12 +97,15 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
     }
 
     private void loadPicture(ImageView imageView, Post post) {
-        StorageReference storageReference = uploadRepository.getDownloadUrlPost(post.getPostId(), post.getUserEmailPostedBy(),
-                post.getUserEmailPostedFor());
-
-        Glide.with(imageView.getContext())
-                .load(storageReference)
-                .into(imageView);
+        List<String> downloadUrlList = post.getDownloadUrlList();
+        if (downloadUrlList != null && !downloadUrlList.isEmpty()) {
+            imageView.setVisibility(View.VISIBLE);
+            Glide.with(imageView.getContext())
+                    .load(downloadUrlList.get(0))
+                    .into(imageView);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
     }
 
     private void setRightContent(TimelineItemViewHolder holder, Post post) {
