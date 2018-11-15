@@ -1,14 +1,20 @@
 package com.razor.ourjournal.screens.add_post.viewmodel;
 
 
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.razor.ourjournal.repository.IUploadRepository;
 import com.razor.ourjournal.screens.add_post.view.AddPostActivityView;
 import com.razor.ourjournal.repository.IPostRepository;
 import com.razor.ourjournal.repository.ISharedPreferencesRepository;
 import com.razor.ourjournal.repository.IUserRepository;
 import com.razor.ourjournal.screens.timeline.model.Post;
+
+import java.util.List;
 
 public class AddPostActivityViewModel {
     private AddPostActivityView view;
@@ -16,12 +22,14 @@ public class AddPostActivityViewModel {
     private String description;
     private IPostRepository postRepository;
     private FirebaseUser firebaseUser;
+    private final IUploadRepository uploadRepository;
     private ISharedPreferencesRepository sharedPreferencesRepository;
 
-    public AddPostActivityViewModel(AddPostActivityView view, IPostRepository postRepository, ISharedPreferencesRepository sharedPreferencesRepository, IUserRepository userRepository) {
+    public AddPostActivityViewModel(AddPostActivityView view, IPostRepository postRepository, ISharedPreferencesRepository sharedPreferencesRepository, IUserRepository userRepository, IUploadRepository uploadRepository) {
         this.view = view;
         this.postRepository = postRepository;
         this.sharedPreferencesRepository = sharedPreferencesRepository;
+        this.uploadRepository = uploadRepository;
         firebaseUser = userRepository.getFirebaseUser();
     }
 
@@ -46,20 +54,33 @@ public class AddPostActivityViewModel {
         }
     }
 
-    public void postClicked() {
+    public void postClicked(@Nullable List<Uri> imageUriList) {
         view.disableUiElements();
 
         view.showProgressLoader();
 
-        addPost();
+        int postHashCode = addPost();
+
+        if (imageUriList != null && !imageUriList.isEmpty()) {
+            uploadImages(postHashCode, imageUriList);
+        }
     }
 
-    private void addPost() {
+    private void uploadImages(int postHashCode, @NonNull List<Uri> imageUriList) {
+        String userEmail = firebaseUser.getEmail();
+        String partnerEmail = getPartnerEmail();
+
+        uploadRepository.uploadImageUriList(Post.getPostId(userEmail, partnerEmail), String.valueOf(postHashCode), imageUriList);
+    }
+
+    private int addPost() {
         String userEmail = firebaseUser.getEmail();
         String partnerEmail = getPartnerEmail();
 
         Post post = new Post(title, description, userEmail, partnerEmail);
         postRepository.addPost(post);
+
+        return post.hashCode();
     }
 
     private String getPartnerEmail() {

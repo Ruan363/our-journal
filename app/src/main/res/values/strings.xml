@@ -51,4 +51,7 @@
     <string name="log_out">Log out</string>
     <string name="log_out_message">Do you wish to log out of Our Journal?</string>
     <string name="cancel">Cancel</string>
+    <string name="attachments">Attachments</string>
+    <string name="camera_permission_explanation">We require the CAMERA permission to use this feature.</string>
+    <string name="request_permission">Request permission</string>
 </resources>

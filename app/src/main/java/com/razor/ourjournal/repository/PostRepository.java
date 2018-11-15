@@ -3,11 +3,8 @@ package com.razor.ourjournal.repository;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +17,8 @@ import com.razor.ourjournal.utils.ConnectivityUtils;
 import java.util.ArrayList;
 
 import static com.razor.ourjournal.constant.FirebaseConstant.PATHS.POSTS;
+import static com.razor.ourjournal.constant.NavigationConstant.IDENTIFIER.FROM;
+import static com.razor.ourjournal.constant.NavigationConstant.NAME.POST_REPO;
 import static com.razor.ourjournal.constant.TimelineConstant.BUNDLE_IDENTIFIER.ERROR_MESSAGE;
 import static com.razor.ourjournal.constant.TimelineConstant.BUNDLE_IDENTIFIER.RESULT;
 
@@ -53,7 +52,9 @@ public class PostRepository implements IPostRepository {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if (databaseError == null) {
-                        repositoryCallback.onSuccess(new Bundle());
+                        Bundle bundle = new Bundle();
+                        bundle.putString(FROM, POST_REPO);
+                        repositoryCallback.onSuccess(bundle);
                     } else {
                         callBackOnCancelled("Failed to add posts");
                     }
@@ -80,6 +81,7 @@ public class PostRepository implements IPostRepository {
             }
 
             Bundle bundle = new Bundle();
+            bundle.putString(FROM, POST_REPO);
             bundle.putParcelableArrayList(RESULT, posts);
 
             repositoryCallback.onSuccess(bundle);

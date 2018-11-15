@@ -4,9 +4,7 @@
     package="com.razor.ourjournal">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- allow device to use internet -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- get access to camera -->
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -33,7 +31,15 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"
             tools:replace="android:value" />
-
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.razor.ourjournal.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity
             android:name=".screens.splash.view.SplashActivity"
             android:theme="@style/NoActionBar">

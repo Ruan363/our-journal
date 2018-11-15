@@ -1,7 +1,9 @@
 package com.razor.ourjournal.add_post.viewmodel;
 
+import android.net.Uri;
+
 import com.google.firebase.auth.FirebaseUser;
-import com.razor.ourjournal.BuildConfig;
+import com.razor.ourjournal.repository.IUploadRepository;
 import com.razor.ourjournal.screens.add_post.view.AddPostActivityView;
 import com.razor.ourjournal.repository.IPostRepository;
 import com.razor.ourjournal.repository.ISharedPreferencesRepository;
@@ -15,7 +17,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
+
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
@@ -36,6 +39,8 @@ public class AddPostActivityViewModelTest {
     @Mock
     private IUserRepository userRepository;
     @Mock
+    private IUploadRepository uploadRepository;
+    @Mock
     private FirebaseUser firebaseUser;
 
     private AddPostActivityViewModel viewModel;
@@ -50,7 +55,7 @@ public class AddPostActivityViewModelTest {
         initMocks(this);
 
         when(userRepository.getFirebaseUser()).thenReturn(firebaseUser);
-        viewModel = new AddPostActivityViewModel(view, postRepository, sharedPreferencesRepository, userRepository);
+        viewModel = new AddPostActivityViewModel(view, postRepository, sharedPreferencesRepository, userRepository, uploadRepository);
     }
 
     @Test
@@ -91,14 +96,14 @@ public class AddPostActivityViewModelTest {
 
     @Test
     public void showProgressLoader_when_postButtonClicked() throws Exception {
-        viewModel.postClicked();
+        viewModel.postClicked(new ArrayList<Uri>());
 
         verify(view).showProgressLoader();
     }
 
     @Test
     public void disableUiElements_when_postButtonClicked() throws Exception {
-        viewModel.postClicked();
+        viewModel.postClicked(new ArrayList<Uri>());
 
         verify(view).disableUiElements();
     }
@@ -110,12 +115,12 @@ public class AddPostActivityViewModelTest {
         when(firebaseUser.getEmail()).thenReturn(testUserEmail);
         when(sharedPreferencesRepository.getPartnerEmail()).thenReturn(testPartnerEmail);
 
-        viewModel = new AddPostActivityViewModel(view, postRepository, sharedPreferencesRepository, userRepository);
+        viewModel = new AddPostActivityViewModel(view, postRepository, sharedPreferencesRepository, userRepository, uploadRepository);
 
         viewModel.titleChanged(testTitle);
         viewModel.descriptionChanged(testDescription);
 
-        viewModel.postClicked();
+        viewModel.postClicked(new ArrayList<Uri>());
 
         Post post = new Post(testTitle, testDescription, testUserEmail, testPartnerEmail);
         verify(postRepository).addPost(post);
